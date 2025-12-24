@@ -1,0 +1,11 @@
+
+      version: 2
+
+sources:
+  - name: demo
+    database: DEMO
+    schema: DEMO_SCHMEA
+    tables:
+      - name: BIKE
+      - name: ORDERS
+      - name: WEATHER
