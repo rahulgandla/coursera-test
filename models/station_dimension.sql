@@ -16,4 +16,4 @@ WITH BIKE AS (
 where RIDE_ID!='RIDE_ID'
 
 )
-select * FROM BIKE
+select * FROM BIKE;
