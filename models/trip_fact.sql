@@ -8,11 +8,11 @@ WITH TRIPS as (
 
     select 
     RIDE_ID,
- RIDEABLE_TYPE,
+-- RIDEABLE_TYPE,
 DATE(TO_TIMESTAMP(STARTED_AT)) as TRIP_DATE,
-START_STATIO_ID as START_STATION_ID,
+start_station_id as START_STATION_ID,
  END_STATION_ID,
- MEMBER_CSUAL as  MEMBER_CASUAL,
+ member_casual as  MEMBER_CASUAL,
 --TimestampDIFF(second,TO_TIMESTAMP(STARTED_AT),TO_TIMESTAMP(ENDED_AT)) AS TRIP_DUARTION_SECONDS
 timestampdiff(
             second,
@@ -21,7 +21,7 @@ timestampdiff(
         ) as trip_duration_seconds
 
 
-    FROM {{ source('demo', 'BIKE') }}
+    FROM {{ ref('Stg_bike') }}
     where RIDE_ID!='RIDE_ID'
   and try_to_timestamp(started_at) is not null
       and try_to_timestamp(ended_at) is not null

@@ -8,16 +8,16 @@ with CTE As
 (
 select 
 
-to_timestamp(STARTED_AT) as STARTED_AT,
-date(to_timestamp(STARTED_AT)) as DATE_STARTED_AT,
-HOUR(TO_TIMESTAMP(STARTED_AT)) as HOUR_STARTED_AT, 
+to_timestamp(started_at) as STARTED_AT,
+date(to_timestamp(started_at)) as DATE_STARTED_AT,
+HOUR(TO_TIMESTAMP(started_at)) as HOUR_STARTED_AT, 
 
-{{day_type('STARTED_AT')}} AS DAY_TYPE,
+{{day_type('started_at')}} AS DAY_TYPE,
 
-{{get_season('STARTED_AT')}} AS STATION_OF_YEAR
+{{get_season('started_at')}} AS STATION_OF_YEAR
 
 FROM 
-{{ source('demo', 'BIKE') }}
+{{ ref('Stg_bike') }}
 
 
   

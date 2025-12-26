@@ -1,25 +1,26 @@
 
-{{
-    config(
-        materialized='table'
-    )
-}}
+    
 
-WITH STG_BIKE AS (
 
-    select
-    RIDE_ID  ,   
-STARTED_AT,
-ENDED_AT,
-START_STATION_NAME,
-START_STATIO_ID,
-END_STATION_NAME,
-END_STATION_ID,
-START_LAT,
-START_LNG,
-END_LAT,
-END_LNG,
-MEMBER_CSUAL
-FROM {{ source('demo', 'bike') }}
-limit 10
-)select * FROM STG_BIKE
+WITH stg_bike AS (
+  SELECT
+    ride_id,
+    replace (started_at,'"','') as  started_at,
+    replace (ended_at,'"','') as ended_at,
+    start_station_name,
+    START_STATIO_ID as start_station_id,
+    end_station_name,
+    end_station_id,
+    start_lat,
+    start_lng,
+    end_lat,
+    end_lng,
+    MEMBER_CSUAL as member_casual
+FROM {{ source('demo', 'BIKE') }}
+where RIDE_ID!='RIDE_ID'
+AND TRY_TO_TIMESTAMP(started_at) IS NOT NULL
+    AND TRY_TO_TIMESTAMP(ended_at) IS NOT NULL
+  
+)
+SELECT * FROM stg_bike 
+
