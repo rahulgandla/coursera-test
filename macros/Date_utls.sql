@@ -19,3 +19,4 @@ ELSE 'BUSINESSDAY'
 END 
     
 {% endmacro %}
+
