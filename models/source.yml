@@ -10,3 +10,19 @@ sources:
       - name: ORDERS
       - name: WEATHER
 
+  - name: BTC
+    database: BTC
+    schema: BTC_Schema
+    tables:
+      - name: BTC
+        loaded_at_field: BLOCK_TIMESTAMP
+        freshness:
+          warn_after:
+            count: 1
+            period: hour
+          error_after:
+            count: 3
+            period: hour
+
+  
+

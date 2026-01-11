@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: STG_BTC
+    columns:
+      - name: HASH_KEY
+        tests:
+          - unique
+          - not_null
+
+  - name: MART_BTC
+    columns:
+      - name: HASH_KEY
+        tests:
+          - not_null
+      - name: ADDRESSS
+        tests:
+          - not_null
+
+    tests:
+      - unique:
+          column_name: "HASH_KEY || '-' || ADDRESSS"
