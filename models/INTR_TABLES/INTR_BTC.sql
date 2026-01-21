@@ -17,12 +17,13 @@ with INTR_BTC as (
     t.OUTPUT_VALUE,
     t.FEE_PER_BYTE,
     t.IS_COINBASE,
-   f.value:address::string as addresss,
+   f.value:address::string as output_addresss,
+   f.value:value::FLOAT as output_vlaue,
      CURRENT_TIMESTAMP()::TIMESTAMP_NTZ  AS ROW_CTD_DT,
       CURRENT_TIMESTAMP()::TIMESTAMP_NTZ  as ROW_MDF_DT
      FROM 
     {{ ref('STG_BTC') }}  T,
-    lateral flatten (INPUT => t.OUTPUTS) f
+    lateral flatten (INPUT => t.OUTPUTS) f 
 
 )
 select * FROm INTR_BTC 

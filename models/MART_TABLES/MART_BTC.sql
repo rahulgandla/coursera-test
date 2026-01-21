@@ -1,7 +1,7 @@
 {{ config(
     materialized = 'incremental',
     incremental_strategy = 'merge',
-  unique_key=['HASH_KEY', 'ADDRESSS'],
+  unique_key=['HASH_KEY', 'OUTPUT_ADDRESSS'],
 ) }}
 
 SELECT
